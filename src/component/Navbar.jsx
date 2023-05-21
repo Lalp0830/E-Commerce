@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import handleCart from '../redux/reducer/handleCart';
 
 const Navbar=(props)=> {
+    
     const state = useSelector((state) => state.handleCart)
     return (
         <div>
@@ -25,7 +26,7 @@ const Navbar=(props)=> {
                                 <NavLink className="nav-link" to="/about">About</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/contacts">Contact</NavLink>
+                                <NavLink className="nav-link" to="/contact">Contact</NavLink>
                             </li>
                         </ul>
                         <div className="buttons">

@@ -40,7 +40,7 @@ const ProductDetails =(props) =>{
                 <h3 className="display-3 fw-bolder my-4">${product.price}</h3>
                 <p className="lead">{product.description}</p>
                 <button className="btn btn-dark px-3 py-2" onClick={()=>addProduct(product)}>Add to cart</button>
-                <NavLink className="btn btn-dark ms-2 px-3 py-2">Go to cart</NavLink>
+                <NavLink to=" /cart" className="btn btn-dark ms-2 px-3 py-2">Go to cart</NavLink>
              </div>
              
             </>

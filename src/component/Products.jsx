@@ -28,6 +28,33 @@ const Products = () => {
         const updatedlist = products.filter((x) => x.category === cat);
         setFilter(updatedlist);
     }
+    
+    const cardItem = (product) => {
+        return (
+            <div class="card my-5 py-4" key={product.id} style={{ width: "18rem" }}>
+                <img src={product.img} class="card-img-top" alt={product.title} />
+                <div class="card-body text-center">
+                    <h5 class="card-title">{product.title}</h5>
+                    <p className="lead">${product.price}</p>
+                    <NavLink to={`/products/${product.id}`} class="btn btn-outline-primary">Buy Now</NavLink>
+                </div>
+            </div>
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const ShowProducts = () => {
         return (
             <>

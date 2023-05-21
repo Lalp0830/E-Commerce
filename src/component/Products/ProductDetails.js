@@ -1,8 +1,8 @@
 import React,{ useEffect,useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCart } from "../redux/action";
+import { addCart } from "../../redux/action";
 import { useParams } from "react-router-dom";
-import Loader from '../component/common/Loader'
+import Loader from '../common/Loader'
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
 

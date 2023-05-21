@@ -1,10 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import handleCart from '../redux/reducer/handleCart';
+import handleCart from '../../redux/reducer/handleCart';
+import CartButton from '../Cart/Cartbutton';
 
-const Navbar=(props)=> {
-    
+const Navbar = (props) => {
+
     const state = useSelector((state) => state.handleCart)
     return (
         <div>
@@ -17,7 +18,7 @@ const Navbar=(props)=> {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <NavLink className="nav-link active" aria-current="page" to="/">Home</NavLink>
+                                <NavLink className="nav-link" to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/products">Products</NavLink>
@@ -29,11 +30,7 @@ const Navbar=(props)=> {
                                 <NavLink className="nav-link" to="/contact">Contact</NavLink>
                             </li>
                         </ul>
-                        <div className="buttons">
-                            <NavLink to="/login " className="btn btn-outline-primary"><i className="fa fa-sign-in "></i>Login</NavLink>
-                            <NavLink to="/register " className="btn btn-outline-primary ms-2"><i className="fa fa-user-plus "></i>Register</NavLink>
-                            <NavLink to=" /cart" className="btn btn-outline-primary ms-2"><i className="fa fa-shopping-cart me-1"></i>Cart({state.length})</NavLink>
-                        </div>
+                        <CartButton lable='Cart'/>
                         <div className={`form-check form-switch text-${props.mode == 'light' ? 'dark' : 'light'}`}>
                             <input className="form-check-input" type="checkbox" onClick={props.toggleMode} id="flexSwitchCheckDefault" />
                             <label className="form-check-label ms-1" htmlFor="flexSwitchCheckDefault">Light Mode</label>

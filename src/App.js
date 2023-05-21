@@ -2,12 +2,12 @@ import './App.css';
 import Home from './component/Home';
 import About from './component/About';
 import Contact from './component/Contact';
-import Navbar from './component/Navbar';
+import Navbar from './component/common/Navbar';
 import { useState } from 'react';
-import Products from './component/Products';
+import Products from './component/Products/Products';
 import {Routes,Route} from "react-router-dom";
-import ProductDetails from './component/ProductDetails';
-import Cart from './component/Cart';
+import ProductDetails from './component/Products/ProductDetails';
+import Cart from './component/Cart/Cart';
 
 function App() {
   const [mode,setMode]=useState('dark');

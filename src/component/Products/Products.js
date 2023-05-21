@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom';
-import Loader from '../component/common/Loader'
+import Loader from '../common/Loader'
 // import Product from '../component/common/Product'
 
 const Products = () => {

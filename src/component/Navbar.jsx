@@ -1,7 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import handleCart from '../redux/reducer/handleCart';
 
 const Navbar=(props)=> {
+    const state = useSelector((state) => state.handleCart)
     return (
         <div>
             <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} py-3 shadow-sm`}>
@@ -28,7 +31,7 @@ const Navbar=(props)=> {
                         <div className="buttons">
                             <NavLink to="/login " className="btn btn-outline-primary"><i className="fa fa-sign-in "></i>Login</NavLink>
                             <NavLink to="/register " className="btn btn-outline-primary ms-2"><i className="fa fa-user-plus "></i>Register</NavLink>
-                            <NavLink to=" /cart" className="btn btn-outline-primary ms-2"><i className="fa fa-shopping-cart me-1"></i>Cart(0)</NavLink>
+                            <NavLink to=" /cart" className="btn btn-outline-primary ms-2"><i className="fa fa-shopping-cart me-1"></i>Cart({state.length})</NavLink>
                         </div>
                         <div className={`form-check form-switch text-${props.mode == 'light' ? 'dark' : 'light'}`}>
                             <input className="form-check-input" type="checkbox" onClick={props.toggleMode} id="flexSwitchCheckDefault" />

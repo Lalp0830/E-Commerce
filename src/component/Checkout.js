@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { deletCart } from '../../redux/action/index'
-import EmptyCart from '../Cart/EmptyCart'
-import Button from '../common/Button'
+import { deletCart } from '../redux/action/index'
+import EmptyCart from '../component/Cart/EmptyCart'
+import Button from '../component/common/Button'
 
-const Cart = () => {
+const Checkout = () => {
     const state = useSelector((state) => state.handleCart)
     const dispatch = useDispatch()
     const handleProduct = (product) => {
@@ -35,10 +35,10 @@ const Cart = () => {
         <>
             {state.length === 0 && <EmptyCart />}
             {state.length !== 0 && state.map(cartItems)}
-            {state.length !== 0 && <Button link="/checkout" text="Proceed To Checkout" />}
+            {state.length !== 0 && <Button link="/order" text="Place Order" />}
 
         </>
     )
 }
 
-export default Cart
+export default Checkout

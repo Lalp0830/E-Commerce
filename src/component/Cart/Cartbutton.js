@@ -7,7 +7,7 @@ const CartButton = (props) => {
     return (
 
         <div className="buttons cartBtn">
-            <NavLink to="/cart" className="btn btn-outline-primary ms-2"><i className="fa fa-shopping-cart me-1"></i>{props.lable}({state.length})</NavLink>
+            <NavLink to={`${process.env.REACT_APP_BASE_URL}/cart`} className="btn btn-outline-primary ms-2"><i className="fa fa-shopping-cart me-1"></i>{props.lable}({state.length})</NavLink>
         </div>
 
     )

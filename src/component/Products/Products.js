@@ -7,6 +7,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState(products);
+    const [category, setCategory] = useState("");
 
     useEffect(() => {
         getProducts();
@@ -23,6 +24,7 @@ const Products = () => {
     };
 
     const filterProduct = (cat) => {
+        setCategory(cat);
         setLoading(true);
         const updatedlist = products.filter((x) => x.category === cat);
         setTimeout(() => {
@@ -44,39 +46,45 @@ const Products = () => {
         );
     }
 
-    const ShowProducts = () => {
+    const ProductsFilters = () => {
         return (
-            <>
-                <div className="button d-flex justify-content-center mb-5 pb-5">
-                    <button className="btn btn-outline-primary ms-2" onClick={() => { setFilter(products) }} >All</button>
-                    <button className="btn btn-outline-primary ms-2" onClick={() => { filterProduct("men's clothing") }}>Men's Cloths</button>
-                    <button className="btn btn-outline-primary ms-2" onClick={() => { filterProduct("women's clothing") }}>Women's Cloths</button>
-                    <button className="btn btn-outline-primary ms-2" onClick={() => { filterProduct("jewelery") }}>Jewelery</button>
-                    <button className="btn btn-outline-primary ms-2" onClick={() => { filterProduct("electronics") }}>Electronics</button>
-                </div>
-                {filter.map(
-                    (product) => {
-                        return (
-                            <>
-                                <div key={product.id} className="col-md-3 mb-4">
-                                    <div className="card h-100 text-center p-4" key={product.id}>
-                                    <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`}>
-                                        <img src={product.image} className="card-img-top" alt={product.title} height="300px" />  </NavLink>
-                                        <div key={product.id} className="card-body">
-                                            <h5 key={product.id} className="card-title mb-0">{product.title.substring(0, 12)}</h5>
-                                            <p key={product.id} className="card-text lead fw-bolder">${product.price}</p>
-                                            <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    }
-                )}
-            </>
+            <div className="button d-flex justify-content-center mb-5 pb-5">
+                <button className={(category === "") ? "btn btn-primary ms-2" : "btn btn-outline-primary ms-2"} onClick={() => { setFilter(products) }} >All</button>
+                <button className={(category === "men's clothing") ? "btn btn-primary ms-2" : "btn btn-outline-primary ms-2"} onClick={() => { filterProduct("men's clothing") }}>Men's Cloths</button>
+                <button className={(category === "women's clothing") ? "btn btn-primary ms-2" : "btn btn-outline-primary ms-2"} onClick={() => { filterProduct("women's clothing") }}>Women's Cloths</button>
+                <button className={(category === "jewelery") ? "btn btn-primary ms-2" : "btn btn-outline-primary ms-2"} onClick={() => { filterProduct("jewelery") }}>Jewelery</button>
+                <button className={(category === "electronics") ? "btn btn-primary ms-2" : "btn btn-outline-primary ms-2"} onClick={() => { filterProduct("electronics") }}>Electronics</button>
+            </div>
         )
     }
+
+    const ShowProducts = () => {
+        return (
+            filter.map(
+                (product) => {
+                    return (
+                        <>
+                            <div key={product.id} className="col-md-3 mb-4">
+                                <div className="card h-100 text-center p-4" key={product.id}>
+                                    <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`}>
+                                        <img src={product.image} className="card-img-top" alt={product.title} height="300px" />  </NavLink>
+                                    <div key={product.id} className="card-body">
+                                        <h5 key={product.id} className="card-title mb-0">{product.title.substring(0, 12)}</h5>
+                                        <p key={product.id} className="card-text lead fw-bolder">${product.price}</p>
+                                        <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    )
+                }
+            )
+        )
+
+    }
+
+
     return (
         <div>
             <div className="container my-3 py-5">
@@ -88,7 +96,7 @@ const Products = () => {
                     </div>
                 </div>
                 <div className="row justify-content-center">
-
+                    <ProductsFilters />
                     {loading ? <Loader text="Your products are loading..." /> : <ShowProducts />}
 
                 </div>

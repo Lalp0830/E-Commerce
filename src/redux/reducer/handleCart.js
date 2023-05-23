@@ -1,42 +1,43 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { createSlice } from "@reduxjs/toolkit";
 
-const cart=[];
+const cart = [];
 
-function handleCart(state = cart, action){
-     const product = action.payload
-     switch (action.type) {
+function handleCart(state = cart, action) {
+    const product = action.payload
+    switch (action.type) {
         case "ADDITEM":
-            const exist = state.find((x)=> x.id===product.id);
-            if(exist){
-                return state.map((x) => 
-                x.id === product.id ? {...x, qty : x.qty + 1} :x
+            const exist = state.find((x) => x.id === product.id);
+            if (exist) {
+                return state.map((x) =>
+                    x.id === product.id ? { ...x, qty: x.qty + 1 } : x
 
                 );
             }
-            else{
+            else {
                 const product = action.payload;
-                return[
-                    ...state,{...product, qty : 1,}
+                return [
+                    ...state, { ...product, qty: 1, }
                 ]
             }
             break;
-            case "DELITEM" :
-             const exist1 = state.find((x)=> x.id===product.id);
-             if(exist1.qty===1){
+        case "DELITEM":
+            const exist1 = state.find((x) => x.id === product.id);
+            if (exist1.qty === 1) {
                 return state.filter((x) => x.id !== product.id)
-             }else{
+            } else {
                 return state.map((x) =>
-                  x.id === product.id ? {...x, qty: x.qty -1} : x
+                    x.id === product.id ? { ...x, qty: x.qty - 1 } : x
 
                 )
-             }
+            }
+            break;
+        case "EMPTYCART":
+            return cart;
+            break;
 
-
-
-     
         default: return state;
             break;
-     }
+    }
 }
 export default handleCart;

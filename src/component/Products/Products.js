@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom';
 import Loader from '../common/Loader'
-// import Product from '../component/common/Product'
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -14,9 +13,8 @@ const Products = () => {
     }, []);
 
     const getProducts = async () => {
-        //console.log(`${process.env.API_BASE_URL}${process.env.API_PRODUCTS}`)
-        const request = await axios.get("https://fakestoreapi.com/products");
-        console.log(request.data);
+        const url = `${process.env.REACT_APP_API_BASE_URL}${process.env.REACT_APP_API_PRODUCTS}`;
+        const request = await axios.get(url);
         if (request) {
             setLoading(false);
             setProducts(request.data);
@@ -28,7 +26,7 @@ const Products = () => {
         const updatedlist = products.filter((x) => x.category === cat);
         setFilter(updatedlist);
     }
-    
+
     const cardItem = (product) => {
         return (
             <div class="card my-5 py-4" key={product.id} style={{ width: "18rem" }}>
@@ -36,24 +34,11 @@ const Products = () => {
                 <div class="card-body text-center">
                     <h5 class="card-title">{product.title}</h5>
                     <p className="lead">${product.price}</p>
-                    <NavLink to={`/products/${product.id}`} class="btn btn-outline-primary">Buy Now</NavLink>
+                    <NavLink to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`} class="btn btn-outline-primary">Buy Now</NavLink>
                 </div>
             </div>
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     const ShowProducts = () => {
         return (
@@ -72,10 +57,10 @@ const Products = () => {
                                 <div key={product.id} className="col-md-3 mb-4">
                                     <div className="card h-100 text-center p-4" key={product.id}>
                                         <img src={product.image} className="card-img-top" alt={product.title} height="300px" />
-                                        <div className="card-body">
-                                            <h5 className="card-title mb-0">{product.title.substring(0, 12)}</h5>
-                                            <p className="card-text lead fw-bolder">${product.price}</p>
-                                            <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
+                                        <div key={product.id} className="card-body">
+                                            <h5 key={product.id} className="card-title mb-0">{product.title.substring(0, 12)}</h5>
+                                            <p key={product.id} className="card-text lead fw-bolder">${product.price}</p>
+                                            <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
                                         </div>
                                     </div>
                                 </div>

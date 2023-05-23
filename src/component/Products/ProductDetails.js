@@ -51,9 +51,10 @@ const ProductDetails = (props) => {
     return (
         <>
             <div className="container py-5">
-                <div className="row py-5">
+            
+                 <div className={loading ? 'justify-content-center align-items-center row py-5': 'row py-5'}>
                     {loading ? <Loader text="Your products are loading..." /> : <ShowProducts />}
-                </div>
+                </div> 
             </div>
         </>
     )

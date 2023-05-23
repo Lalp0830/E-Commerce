@@ -23,8 +23,12 @@ const Products = () => {
     };
 
     const filterProduct = (cat) => {
+        setLoading(true);
         const updatedlist = products.filter((x) => x.category === cat);
-        setFilter(updatedlist);
+        setTimeout(() => {
+            setFilter(updatedlist);
+            setLoading(false);
+        }, 1500);
     }
 
     const cardItem = (product) => {
@@ -56,11 +60,13 @@ const Products = () => {
                             <>
                                 <div key={product.id} className="col-md-3 mb-4">
                                     <div className="card h-100 text-center p-4" key={product.id}>
-                                        <img src={product.image} className="card-img-top" alt={product.title} height="300px" />
+                                    <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`}>
+                                        <img src={product.image} className="card-img-top" alt={product.title} height="300px" />  </NavLink>
                                         <div key={product.id} className="card-body">
                                             <h5 key={product.id} className="card-title mb-0">{product.title.substring(0, 12)}</h5>
                                             <p key={product.id} className="card-text lead fw-bolder">${product.price}</p>
                                             <NavLink key={product.id} to={`${process.env.REACT_APP_BASE_URL}/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
+                                          
                                         </div>
                                     </div>
                                 </div>

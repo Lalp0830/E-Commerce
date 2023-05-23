@@ -12,15 +12,15 @@ import Checkout from './component/Checkout';
 import Order from './component/Order'
 
 function App() {
-  const [mode, setMode] = useState('dark');
+  const [mode, setMode] = useState('light');
   const toggleMode = () => {
     if (mode == 'light') {
       setMode('dark');
-      document.body.style.backgroundColor = '#0b243a';
+      document.body.style.backgroundColor = 'grey';
     }
     else {
       setMode('light');
-      document.body.style.backgroundColor = '#84c7a8';
+      document.body.style.backgroundColor = 'white';
     }
   }
   return (

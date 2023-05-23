@@ -17,7 +17,9 @@ const Order = () => {
 
     return (
         <>
-            Thank you. Your Order is placed
+
+            <h1 className="display-6 text-center fw-bold mb-4">Thank You</h1>
+            <p className="lead text-center mb-4 text-dark-50">Your Order is placed</p>
         </>
     )
 }

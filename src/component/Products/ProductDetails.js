@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCart } from "../../redux/action";
+import { addCart } from "../../redux/action/cart";
 import { useParams } from "react-router-dom";
 import Loader from '../common/Loader'
 import { NavLink } from 'react-router-dom';
@@ -51,14 +51,12 @@ const ProductDetails = (props) => {
     return (
         <>
             <div className="container py-5">
-            
                  <div className={loading ? 'justify-content-center align-items-center row py-5': 'row py-5'}>
                     {loading ? <Loader text="Your products are loading..." /> : <ShowProducts />}
                 </div> 
             </div>
         </>
     )
-
 }
 
 export default ProductDetails

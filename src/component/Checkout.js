@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { deletCart } from '../redux/action/index'
+import { deletCart } from '../redux/action/cart'
 import EmptyCart from '../component/Cart/EmptyCart'
 import Button from '../component/common/Button'
 
